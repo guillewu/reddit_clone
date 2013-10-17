@@ -8,6 +8,14 @@
 </head>
 <body>
 
+  <% if logged_in? %>
+    <%= link_to current_user.email, current_user %> |
+    <%= button_to "Log out", session_url, :method => :delete %>
+  <% else %>
+  <%= button_to "Log in", new_session_url, :method => :get %> |
+  <%= button_to "Sign up", new_user_url, :method => :get %>
+  <% end %>
+
 <%= yield %>
 
 </body>
