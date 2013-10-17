@@ -8,6 +8,12 @@
 </head>
 <body>
 
+  <% if flash[:error] %>
+  <div id="global_error">
+    <%= flash[:error] %>
+  </div>
+  <% end %>
+
   <% if logged_in? %>
     <%= link_to current_user.email, current_user %> |
     <%= button_to "Log out", session_url, :method => :delete %>

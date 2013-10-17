@@ -1,0 +1,12 @@
+<h1><%= @sub.name %></h1> |
+<% if current_user_moderates_sub?(@sub) %>
+<%= link_to "Edit", edit_sub_url(@sub) %>
+<% end %>
+
+<ul>
+  <% @sub.links.each do |link| %>
+  <li>
+    <%= link_to link.title, link %>
+  </li>
+  <% end %>
+</ul>

@@ -23,13 +23,18 @@ end
 group :development, :test do
   gem "rspec-rails"
   gem "factory_girl_rails"
+
+  gem "better_errors"
+  gem "binding_of_caller"
+  gem "debugger"
+  gem "meta_request"
 end
 
 group :test do
   gem "faker"
   gem "capybara"
   gem "guard-rspec"
-  gem "launchy"
+  gem "shoulda"
 end
 
 gem 'jquery-rails'

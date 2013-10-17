@@ -1,0 +1,29 @@
+<h1>New Sub</h1>
+
+<form action="<%= subs_url %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <%= render "shared/errors" %>
+
+  <label for="sub_name">Name</label>
+  <input type="text" id="sub_name" name="sub[name]" value="<%= @sub.name %>">
+  <br><br>
+
+  <label for="links">Links</label>
+  <br>
+
+  <% @sub.links.each_with_index do |link, index| %>
+  <label for="links_<%= index %>_title">Title</label>
+  <input id="links_<%= index %>_title" name="links[<%= index %>][title]" value="<%= link.title %>">
+  <br>
+
+  <label for="links_<%= index %>_url">Url</label>
+  <input id="links_<%= index %>_url" name="links[<%= index %>][url]" value="<%= link.url %>">
+  <br>
+
+  <label for="links_<%= index %>_text">Text</label>
+  <textarea id="links_<%= index %>_text" name="links[<%= index %>][text]"><%= link.text %></textarea>
+  <br><br>
+  <% end %>
+
+  <input type="submit" value="Create sub">
+</form>

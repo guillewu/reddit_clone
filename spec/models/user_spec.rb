@@ -1,6 +1,13 @@
 require 'spec_helper'
 
 describe User do
+  it { should_not allow_mass_assignment_of(:password_digest) }
+  it { should_not allow_mass_assignment_of(:session_token) }
+
+  it { should allow_mass_assignment_of(:password) }
+  it { should allow_mass_assignment_of(:email) }
+
+
   context "email" do
     it "requires email" do
       FactoryGirl.build(:user, :email => nil).should_not be_valid
@@ -14,8 +21,12 @@ describe User do
   end
 
   context "password" do
-    it "requires password" do
-      FactoryGirl.build(:user, :password => nil).should_not be_valid
+    it "requires non-empty password" do
+      FactoryGirl.build(:user, :password => "").should_not be_valid
+    end
+
+    it "allows nil password" do
+      FactoryGirl.build(:user, :password => nil).should be_valid
     end
 
     context "authentication" do
@@ -54,7 +65,35 @@ describe User do
       user.reset_session_token!
       expect(user.session_token).not_to eq session_token
     end
+  end
 
+  context "subs" do
+    it { should have_many(:subs) }
+  end
 
+  context "links" do
+    it { should have_many(:links) }
   end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

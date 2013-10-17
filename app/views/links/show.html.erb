@@ -1,0 +1,13 @@
+<h1><%= @link.title %></h1>
+<% if current_user_owns_link?(@link) %>
+<div>
+  <%= link_to "Edit", edit_link_url(@link) %>
+</div>
+<% end %>
+
+
+<a href="<%= @link.url %>" target="blank"><%= @link.url %></a>
+
+<p>
+<%= @link.text %>
+</p>

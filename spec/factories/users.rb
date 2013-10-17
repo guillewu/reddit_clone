@@ -10,5 +10,6 @@ FactoryGirl.define do
     sequence :session_token do |n|
       "MyString #{n}"
     end
+
   end
 end

@@ -3,9 +3,13 @@ class User < ActiveRecord::Base
   attr_reader :password
 
   validates :email, :session_token, :presence => true, :uniqueness => true
-  validates :password_digest, :password, :presence => true
+  validates :password_digest, :presence => true
+  validates :password, :length => { :minimum => 6, :allow_nil => true }
   before_validation { self.session_token = SecureRandom.urlsafe_base64(16) }
 
+  has_many :subs, :foreign_key => :moderator_id, :inverse_of => :moderator
+
+  has_many :links, :inverse_of => :user
 
   def self.find_by_credentials(email, password)
     user = User.find_by_email(email)

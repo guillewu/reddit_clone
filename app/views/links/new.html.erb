@@ -1,0 +1,7 @@
+<form action="<%= links_url %>" method="post" accept-charset="utf-8">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <%= render "shared/errors" %>
+  <%= render "form_fields" %>
+
+  <p><input type="submit" value="Create Link"></p>
+</form>
