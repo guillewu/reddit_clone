@@ -11,3 +11,12 @@
 <p>
 <%= @link.text %>
 </p>
+
+Comments:
+
+<% comments_by_parent_id = @link.comments_by_parent_id %>
+<ul>
+  <% comments_by_parent_id[nil].each do |comment| %>
+    <%= render "comments/comment", :comment => comment, :comments_by_parent_id => comments_by_parent_id %>
+  <% end %>
+</ul>

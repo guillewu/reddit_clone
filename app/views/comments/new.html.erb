@@ -1,0 +1,25 @@
+<h1>Add Comment</h1>
+
+Link:
+<%= @link.url %><br>
+<%= @link.text %>
+
+<% if @parent_comment %>
+Parent Comment:
+<%= @parent_comment.text %>
+<% end %>
+
+
+Comment:
+<form action="<%= link_comments_url(@link) %>" method="post">
+  <%= render "shared/errors" %>
+
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="comment[parent_comment_id]" value="<%= @parent_comment.id if @parent_comment %>">
+
+  <label for="comment_text">Comment</label>
+  <textarea id="comment_text" name="comment[text]"><%= @comment.text %></textarea>
+  <br>
+
+  <input type="submit" value="Add comment">
+</form>

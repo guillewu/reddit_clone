@@ -1,0 +1,7 @@
+<%= comment.text %><br>
+<%= comment.created_at %> by <%= comment.user.email %>
+<% comments_by_parent_id[comment.id].each do |com| %>
+  <ul>
+    <%= render "comments/comment", :comment => com, :comments_by_parent_id => comments_by_parent_id %>
+  </ul>
+<% end %>
